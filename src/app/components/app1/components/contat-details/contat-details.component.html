@@ -1,0 +1,43 @@
+<div *ngIf="contatto">
+
+    <div class="container">
+        <div class="row nav">
+            <div class="col-2 mt-3"><button type="button" (click)="goBack()">go back</button></div>
+            <div class="col col-md-7 text-center">
+                <h1>{{contatto.firstname}} {{contatto.lastname}}</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row row-cols-1">
+            <div class="col">
+                <img src="{{contatto.imageUrl}}" alt="">
+            </div>
+            <div class="col">
+                <h3>ID: {{contatto.id}}</h3>
+            </div>
+            <div class="col">
+                <label for="firstname">First name: </label>
+                <input id="firstname" [(ngModel)]="contatto.firstname" placeholder="firstname">
+            </div>
+            <div class="col">
+                <label for="lastname">Last name: </label>
+                <input id="lastname" [(ngModel)]="contatto.lastname" placeholder="lastname">
+            </div>
+
+            <div class="col">
+                <label for="email">Email: </label>
+                <input id="email" [(ngModel)]="contatto.email" placeholder="email">
+            </div>
+       
+             <div class="col">
+            <label for="type">Type: </label>
+            <input id="type" [(ngModel)]="contatto.type" placeholder="type">
+        </div>
+    </div>
+
+    <div class="col">
+          <button type="button" (click)="save()">Save</button> 
+    </div>
+</div>
+

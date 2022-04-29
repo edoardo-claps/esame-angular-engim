@@ -1,0 +1,14 @@
+<div class="container">
+        <div class="row nav">
+            <div class="col-2 mt-3"><button type="button" (click)="goBack()">go back</button></div>
+            <div class="col col-md-7 text-center"><h1>Rubrica</h1></div>
+        </div>
+    </div>
+    <div class="container" *ngIf="contacts">
+        <div class="row" *ngFor="let contact of contacts">
+            <table>
+            <div class="col"><app-message-item [contatto]="contact"></app-message-item></div>
+        </table>
+        </div>
+    </div>
+    

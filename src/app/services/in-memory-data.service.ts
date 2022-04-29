@@ -81,7 +81,7 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 46, userId: 23, type: 'incoming', message: 'Bene grazie! E tu?' }
     ];
 
-    const answers= [
+   const answers= JSON.parse(localStorage.getItem('angular/answers') || 'null') || [
       { id: 1, answer: 'Va bene dai. Facciamo così...' },
       { id: 2, answer: 'Basta! Io ti lascio!' },
       { id: 3, answer: 'Hai ragione! Sei un genio!' },
@@ -125,7 +125,7 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 41, answer: 'Non ci provare neanche 😡' },
       { id: 42, answer: 'Stai schezando?? 🤢🤮' },
       { id: 43, answer: 'Non ci posso credere 🙈' },
-      { id: 44, answer: 'Ti amno 🥰' },
+      { id: 44, answer: 'Ti amo 🥰' },
       { id: 45, answer: 'Non ne sono molto sicuro 🤔' },
       { id: 46, answer: 'Ma cosa dici! 😳' },
       { id: 47, answer: 'Scherzetto 😜' },
