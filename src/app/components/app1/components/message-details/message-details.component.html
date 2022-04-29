@@ -8,15 +8,15 @@
             </div>
         </div>
     </div>
-    <div *ngIf="messages">
-        <div *ngFor="let message of messages">
-            <p [class.incoming]="message.type"> {{message.message}}  </p>
+  
+        <div *ngFor="let messag of messages">
+            <p [class.incoming]="messag.type=='incoming'" [class.outcoming]="messag.type=='outcoming'"> {{messag.message}}  </p>
 
         </div>
-    </div>
+
 
     <div>
-        <input type="text" #mess name="" id="" (keydown.enter)="add(mess.value)">
+        <input type="text" #mess name="" id="" (keydown.enter)="add(mess.value)"  (keyup.enter)="mess.value=''" >
 
         <button (click)="add(mess.value)" (click)='mess.value=""' > Invia </button>
        

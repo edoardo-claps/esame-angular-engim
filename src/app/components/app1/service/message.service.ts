@@ -3,7 +3,6 @@ import { Answer } from '../interface/answerInterface';
 import { Message } from '../interface/messageInterface';
 import { Observable, Subject,of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {InMemoryDataService} from '../../../services/in-memory-data.service' ;
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +27,6 @@ export class MessageService {
     
    }
   addMessage(message: Message): Observable<Message>{
-    return this.http.post<Message>("angular/messages", message, this.httpOptions);
+    return this.http.post<Message>("angular/messages", message);
   }
 }

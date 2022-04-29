@@ -5,6 +5,7 @@ import { LocationStrategy } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from '../../service/message.service';
 import { Message } from '../../interface/messageInterface';
+import { Identifier } from 'estree';
 
 @Component({
   selector: 'app-message-details',
@@ -39,20 +40,24 @@ export class MessageDetailsComponent implements OnInit {
   }
   getMessages() {
     const id = Number(this.route.snapshot.paramMap.get('userId'));
-    this.messageService.getMessages().subscribe((data: Message[]) => this.messages = data.filter(message => {return message.id==id} ))
+    this.messageService.getMessages().subscribe((data: Message[]) => this.messages = data.filter(message => {return message.userId==id} ))
   }
  
   add(messaggio: string): void {
-    const id = Number(this.route.snapshot.paramMap.get('userId'));
-    messaggio = messaggio.trim();
+    const ida = Number(this.route.snapshot.paramMap.get('userId'));
+    /* messaggio = messaggio.trim();
 
-    if (!messaggio) { return; }
+    if (!messaggio) { return; } */
     
-    let message: Message = {type: 'outcoming', userId: id, message: messaggio} as Message;
-    this.messageService.addMessage(message)
-      .subscribe((data: Message) => {
+    let messaggino: Message = { userId: ida , type: 'outcoming',  message: messaggio} as Message;
+   
+    this.messageService.addMessage(messaggino)
+      .subscribe((data:Message) => {
         this.messages.push(data);
+       
       });
+      console.log(this.messages)
+   
   }
 
  /*  delete(message: message): void {

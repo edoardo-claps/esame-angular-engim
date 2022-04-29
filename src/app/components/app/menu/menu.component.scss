@@ -1,6 +1,7 @@
 .item1 {
     border-radius: 10px;
-    background-color: rgb(197, 235, 108);
+    background-color: rgb(50, 125, 245);
+    color: white;
   
     text-align: center;
 }
@@ -18,5 +19,14 @@
 }
 a{
     text-decoration: none;
+    text-align: center;
    
+}
+.item1:hover{
+    background-color: rgb(154, 193, 255);
+    color: rgb(7, 61, 146);
+}
+.item2:hover {
+    background-color: rgb(136, 251, 203);
+    color: rgb(9, 97, 60);
 }

@@ -1,10 +1,8 @@
-<div class="col" *ngIf="contatto">
-        <a routerLink="/whatsapp/{{contatto.id}}">
-          
-        <td><img src="{{contatto.imageUrl}}" class="rounded-circle " alt=""></td>
-        <td><p>{{contatto.firstname}}</p></td>
-        <td><p>{{contatto.lastname}}</p></td>
-        
+
+    <div  *ngIf="contatto" >
+        <a class="row p-0 " routerLink="/whatsapp/{{contatto.id}}">
+            <img class="col-4 col-md-1 " src="{{contatto.imageUrl}}" alt="">
+            <p class="col-4  col-md-3 my-auto">{{contatto.firstname}}</p>
+            <p class="col-4  col-md-3  my-auto ">{{contatto.lastname}}</p>
         </a>
-        
     </div>
