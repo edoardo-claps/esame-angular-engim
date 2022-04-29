@@ -1,6 +1,33 @@
 .incoming{
-    background-color:green ;
+
+    padding: 0.5rem;
+    width: fit-content;
+    border-radius: 10px;
+    background-color:rgb(13, 112, 13) ;
+    color: white;
 }
 .outcoming{
-    background-color:red;
+    padding: 0.5rem;
+    width: fit-content;
+    border-radius: 10px;
+    background-color:rgb(9, 161, 9) ;
+    color: white;
+    justify-content: flex-end;
+}
+.nav{
+    border-radius: 10px;
+    background-color: rgb(21, 194, 113);
+    color:rgb(45, 63, 4);
+
+}
+button{
+color: rgb(2, 63, 34);
+  background-color: unset;
+  border: unset;
+
+
+}
+.ciao{
+    display: flex;
+    justify-content: flex-end;
 }

@@ -1,18 +1,19 @@
 <div *ngIf="contatto">
 
     <div class="container">
-        <div class="row nav">
-            <div class="col-2 mt-3"><button type="button" (click)="goBack()">go back</button></div>
-            <div class="col col-md-7 text-center">
+        <div class="row nav ">
+            <div class="col-2 "><button type="button" (click)="goBack()"><i class="bi bi-arrow-left-short" style="font-size: 2rem;"></i></button></div>
+            <div class="col-8 col-md-7 text-center" >
                 <h1>{{contatto.firstname}} {{contatto.lastname}}</h1>
             </div>
         </div>
     </div>
-  
-        <div *ngFor="let messag of messages">
-            <p [class.incoming]="messag.type=='incoming'" [class.outcoming]="messag.type=='outcoming'"> {{messag.message}}  </p>
-
-        </div>
+  <div  *ngFor="let messag of messages"  [class.ciao]="messag.type=='outcoming'">
+    <div style="display: flex;" [class.incoming]="messag.type=='incoming'" [class.outcoming]="messag.type=='outcoming'" >
+        <p style="display:flex" > {{messag.message}}  </p>
+    </div>  
+  </div>
+        
 
 
     <div>
