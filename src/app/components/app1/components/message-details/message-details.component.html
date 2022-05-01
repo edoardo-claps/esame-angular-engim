@@ -1,26 +1,30 @@
 <div *ngIf="contatto">
 
-    <div class="container">
-        <div class="row nav ">
+    <div class="container sticky-top">
+        <div class="row nav mb-2 ">
             <div class="col-2 "><button type="button" (click)="goBack()"><i class="bi bi-arrow-left-short" style="font-size: 2rem;"></i></button></div>
             <div class="col-8 col-md-7 text-center" >
                 <h1>{{contatto.firstname}} {{contatto.lastname}}</h1>
             </div>
         </div>
     </div>
-  <div  *ngFor="let messag of messages"  [class.ciao]="messag.type=='outcoming'">
-    <div style="display: flex;" [class.incoming]="messag.type=='incoming'" [class.outcoming]="messag.type=='outcoming'" >
-        <p style="display:flex" > {{messag.message}}  </p>
+   
+    <div class="container mb-5">
+  <div class="mb-1" *ngFor="let messag of messages"  [class.outc]="messag.type=='outcoming'">
+    <div  [class.incoming]="messag.type=='incoming'" [class.outcoming]="messag.type=='outcoming'" >
+        <p > {{messag.message}}  </p>
     </div>  
   </div>
+ 
+    </div>
         
 
+<footer class="row fixed-bottom my-2 d-flex justify-content-center">
+   
+        <input type="text" #mess name="" class="col-8 " id="" (keydown.enter)="add(mess.value)" (keydown.enter)="randomAnswers()" (keyup.enter)="mess.value=''" >
+        <button (click)="add(mess.value)"  (click)="randomAnswers()" class="col-2 invia ms-1 " (click)='mess.value=""' > Invia </button>
 
-    <div>
-        <input type="text" #mess name="" id="" (keydown.enter)="add(mess.value)"  (keyup.enter)="mess.value=''" >
-
-        <button (click)="add(mess.value)" (click)='mess.value=""' > Invia </button>
-       
-    </div>
+</footer> 
+  
     
     

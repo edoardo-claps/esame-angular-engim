@@ -1,15 +1,54 @@
-.nav{
+.nav {
     border-radius: 10px;
     background-color: rgb(29, 131, 149);
     color: white;
 }
 
-    button{
-        color: rgb(65, 76, 238);
-        background-color: unset;
-          border: unset;
-      }
+button {
+    display: inline-block;
+    color: rgb(7, 15, 123);
+    text-decoration: none;
+    background-color: unset;
+    border: 3px solid rgb(7, 15, 123);
+    border-radius: 10px;
 
-label{
-    padding:1rem;
+    &#delete{
+    border: 3px solid rgb(123, 7, 7);
+    color: rgb(123, 7, 7);
+
+    }
+}
+
+button:hover {
+    animation: pulsate 1s ease-in-out;
+    &#delete{
+        animation: pulsate2 1s ease-in-out;
+    }
+}
+
+@keyframes pulsate {
+
+    0% {
+        box-shadow:
+            0 0 25px rgb(4, 15, 177),
+            0 0 50px rgb(25, 41, 252);
+    }
+}
+@keyframes pulsate2 {
+
+    0% {
+        box-shadow:
+            0 0 25px  rgb(176, 4, 4),
+            0 0 50px  rgb(250, 17, 17);
+    }
+}
+
+label {
+    padding: 0.5rem;
+    color: rgb(7, 15, 123);
+}
+
+input {
+    border-radius: 10px;
+    border: 2px solid rgb(7, 15, 123);
 }

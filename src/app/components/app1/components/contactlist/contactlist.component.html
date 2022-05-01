@@ -1,9 +1,12 @@
 <div class="container">
     <div class="row nav">
-        <div class="col-2"><button type="button" (click)="goBack()"><i class="bi bi-arrow-left-short" style="font-size: 2rem;"></i></button></div>
-        <div class="col-8 my-auto col-md-7 text-center"><h1>Rubrica</h1></div>
+        <div class="col-1 "><button type="button" (click)="goBack()"><i class="bi bi-arrow-left-short" style="font-size: 2rem;"></i></button></div>
+        <div class="col-10 my-auto  text-center"><h1>Rubrica</h1></div>
+
     </div>
 </div>
+<div class="col d-flex justify-content-center mt-2"><a routerLink="/contact/0" ><button type="button" ><i class="bi bi-person-plus" style="font-size: 2rem;"></i></button></a></div>
+
 <div class="container" *ngIf="contacts">
     <div *ngFor="let contact of contacts">
       

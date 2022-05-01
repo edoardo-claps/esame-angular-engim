@@ -7,6 +7,7 @@ import { MessageService } from '../../service/message.service';
 import { Message } from '../../interface/messageInterface';
 import { Identifier } from 'estree';
 
+
 @Component({
   selector: 'app-message-details',
   templateUrl: './message-details.component.html',
@@ -45,12 +46,10 @@ export class MessageDetailsComponent implements OnInit {
  
   add(messaggio: string): void {
     const ida = Number(this.route.snapshot.paramMap.get('userId'));
-    /* messaggio = messaggio.trim();
-
-    if (!messaggio) { return; } */
+     messaggio = messaggio.trim();
+    if (!messaggio) { return; } 
     
     let messaggino: Message = { userId: ida , type: 'outcoming',  message: messaggio} as Message;
-   
     this.messageService.addMessage(messaggino)
       .subscribe((data:Message) => {
         this.messages.push(data);
@@ -58,6 +57,16 @@ export class MessageDetailsComponent implements OnInit {
       });
       console.log(this.messages)
    
+  }
+  randomAnswers():void{
+    const ida = Number(this.route.snapshot.paramMap.get('userId'));
+    this.messageService.getRandomMessage().subscribe(data=>{
+      let risposta :Message = {userId:ida , type:'incoming',message:data.answer } as Message;
+     
+      this.messageService.addMessage(risposta).subscribe(data=> this.messages.push(risposta)
+      )
+    })
+
   }
 
  /*  delete(message: message): void {

@@ -1,43 +1,90 @@
-<div *ngIf="contatto">
+<div *ngIf="id">
+    <div *ngIf="id > 0 && contatto">
+        <div class="container">
+            <div class="row nav">
+                <div class="col-2 "><button type="button" (click)="goBack()"><i class="bi bi-arrow-left-short"
+                            style="font-size: 2rem;"></i></button></div>
+                <div class="col-8 col-md-7 text-center">
+                    <h1>{{contatto.firstname}} {{contatto.lastname}}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row row-cols-1 ">
+                <div class="col d-flex justify-content-center my-1">
+                    <img src="{{contatto.imageUrl}}" alt="">
+                </div>
+                <div class="col d-flex justify-content-center my-1">
+                    <h3>ID: {{contatto.id}}</h3>
+                </div>
+                <div class="col d-flex justify-content-center my-1">
+                    <label for="firstname">First name: </label>
+                    <input id="firstname" [(ngModel)]="contatto.firstname" placeholder="firstname">
+                </div>
+                <div class="col d-flex justify-content-center my-1">
+                    <label for="lastname">Last name: </label>
+                    <input id="lastname" [(ngModel)]="contatto.lastname" placeholder="lastname">
+                </div>
 
+                <div class="col d-flex justify-content-center my-1">
+                    <label for="email">Email: </label>
+                    <input id="email" [(ngModel)]="contatto.email" placeholder="email">
+                </div>
+
+                <div class="col d-flex justify-content-center my-1">
+                    <label for="type">Type: </label>
+                    <input id="type" [(ngModel)]="contatto.type" placeholder="type">
+                </div>
+            </div>
+
+            <div class="col d-flex justify-content-center my-3">
+                <button type="button" (click)="save()">Save</button>
+            </div>
+            <div class="col d-flex justify-content-center my-3">
+                <button id="delete" type="button" (click)="delete()">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="id == 0 && contatto">
     <div class="container">
         <div class="row nav">
-            <div class="col-2 "><button type="button" (click)="goBack()"><i class="bi bi-arrow-left-short" style="font-size: 2rem;"></i></button></div>
+            <div class="col-2 "><button type="button" (click)="goBack()"><i class="bi bi-arrow-left-short"
+                        style="font-size: 2rem;"></i></button></div>
             <div class="col-8 col-md-7 text-center">
-                <h1>{{contatto.firstname}} {{contatto.lastname}}</h1>
+                <h1>Nuovo Contatto</h1>
             </div>
         </div>
     </div>
     <div class="container">
-        <div class="row row-cols-1">
-            <div class="col">
-                <img src="{{contatto.imageUrl}}" alt="">
+        <div class="row row-cols-1 ">
+            <div class="col d-flex justify-content-center my-1">
+                <img src="https://ps.w.org/simple-user-avatar/assets/icon-256x256.png?rev=2413146" style="border-radius: 10px;" alt="">
             </div>
-            <div class="col">
-                <h3>ID: {{contatto.id}}</h3>
-            </div>
-            <div class="col">
+         
+            <div class="col d-flex justify-content-center my-1">
                 <label for="firstname">First name: </label>
                 <input id="firstname" [(ngModel)]="contatto.firstname" placeholder="firstname">
             </div>
-            <div class="col">
+            <div class="col d-flex justify-content-center my-1">
                 <label for="lastname">Last name: </label>
                 <input id="lastname" [(ngModel)]="contatto.lastname" placeholder="lastname">
             </div>
 
-            <div class="col">
+            <div class="col d-flex justify-content-center my-1">
                 <label for="email">Email: </label>
                 <input id="email" [(ngModel)]="contatto.email" placeholder="email">
             </div>
-       
-             <div class="col">
-            <label for="type">Type: </label>
-            <input id="type" [(ngModel)]="contatto.type" placeholder="type">
+
+            <div class="col d-flex justify-content-center my-1">
+                <label for="type">Type: </label>
+                <input id="type" [(ngModel)]="contatto.type" placeholder="type">
+            </div>
+        </div>
+
+        <div class="col d-flex justify-content-center my-3">
+            <button type="button" (click)="addNew()">Add</button>
         </div>
     </div>
-
-    <div class="col">
-          <button type="button" (click)="save()">Save</button> 
-    </div>
 </div>
-
