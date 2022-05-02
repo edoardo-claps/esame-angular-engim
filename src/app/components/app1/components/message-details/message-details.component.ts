@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MessageService } from '../../service/message.service';
 import { Message } from '../../interface/messageInterface';
 import { Identifier } from 'estree';
+import { delay } from 'rxjs';
 
 
 @Component({
@@ -14,9 +15,10 @@ import { Identifier } from 'estree';
   styleUrls: ['./message-details.component.scss']
 })
 export class MessageDetailsComponent implements OnInit {
-  contatto?: Contact
+  contatto?: Contact;
   messages: Message[] = [];
- 
+  scrivendo?: boolean ;
+
 
   constructor(private route: ActivatedRoute,
     private contactService: ContactService,
@@ -41,39 +43,51 @@ export class MessageDetailsComponent implements OnInit {
   }
   getMessages() {
     const id = Number(this.route.snapshot.paramMap.get('userId'));
-    this.messageService.getMessages().subscribe((data: Message[]) => this.messages = data.filter(message => {return message.userId==id} ))
+    this.messageService.getMessages().subscribe((data: Message[]) => this.messages = data.filter(message => { return message.userId == id }))
   }
- 
+
   add(messaggio: string): void {
     const ida = Number(this.route.snapshot.paramMap.get('userId'));
-     messaggio = messaggio.trim();
-    if (!messaggio) { return; } 
-    
-    let messaggino: Message = { userId: ida , type: 'outcoming',  message: messaggio} as Message;
+    messaggio = messaggio.trim();
+    if (!messaggio) { return; }
+
+    let messaggino: Message = { userId: ida, type: 'outcoming', message: messaggio } as Message;
     this.messageService.addMessage(messaggino)
-      .subscribe((data:Message) => {
-        this.messages.push(data);
-       
+      .subscribe((data: Message) => {
+        this.messages.push(data)
+        
       });
-      console.log(this.messages)
-   
+
   }
-  randomAnswers():void{
+  randomAnswers(): void {
+    this.scrivendo=true
     const ida = Number(this.route.snapshot.paramMap.get('userId'));
-    this.messageService.getRandomMessage().subscribe(data=>{
-      let risposta :Message = {userId:ida , type:'incoming',message:data.answer } as Message;
+    this.messageService.getRandomMessage().subscribe(data => {
+        let risposta: Message = { userId: ida, type: 'incoming', message: data.answer } as Message;
+        this.messageService.addMessage(risposta).subscribe(data =>{  this.messages.push(risposta)
+        this.scrivendo=false}
+        )
      
-      this.messageService.addMessage(risposta).subscribe(data=> this.messages.push(risposta)
-      )
     })
-
-  }
-
- /*  delete(message: message): void {
     
-    this.messageService.deletemessage(message.id).subscribe(() => {
-      this.messagees = this.messagees.filter(h => h !== message)
-    });
+
+
   }
-} */
+
+  updateMessage(message: Message): void {
+    if(confirm("vuoi davvero cancellare il messaggio?"))
+    { 
+    message.deleted = true
+    this.messageService.updateMessage(message).subscribe();
+    }
+  }
+
+  searchMessage(search: string):void{
+    if(search.trim()=="")
+    {
+      this.getMessages()
+    }
+    const ida = Number(this.route.snapshot.paramMap.get('userId'));
+    this.messageService.searchMessage(search).subscribe(data=>this.messages =data.filter(mess=>mess.userId==ida))
+  }
 }

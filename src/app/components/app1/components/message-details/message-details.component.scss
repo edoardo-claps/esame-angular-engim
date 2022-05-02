@@ -38,6 +38,9 @@ button{
     &.invia{
         background-color: white;
     }
+    &#trash{
+        border: none;
+    }
   }
   
   button:hover{
@@ -55,8 +58,17 @@ button{
   }
 p{
     margin: 0;
+    &.scrivendo{
+        font-size: 16px;
+        font-style: oblique;
+        color: gray;
+    }
 }
 input{
     border-radius: 10px;
     border: 2px solid rgb(21, 194, 113);
+}
+
+ul{
+    padding: 1rem;
 }

@@ -2,29 +2,53 @@
 
     <div class="container sticky-top">
         <div class="row nav mb-2 ">
-            <div class="col-2 "><button type="button" (click)="goBack()"><i class="bi bi-arrow-left-short" style="font-size: 2rem;"></i></button></div>
-            <div class="col-8 col-md-7 text-center" >
+            <div class="col-2 "><button type="button" (click)="goBack()"><i class="bi bi-arrow-left-short"
+                        style="font-size: 2rem;"></i></button></div>
+            <div class="col-8 col-md-7 text-center">
                 <h1>{{contatto.firstname}} {{contatto.lastname}}</h1>
+            </div>
+            <div class="col-md col-1 p-0 d-flex justify-content-md-end">
+                <div class="btn-group">
+                    <button type="button" class="me-2" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                        <i class="bi bi-search " style="font-size: 1.5rem;"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
+                      <li><p>Cerca messaggio:</p></li>
+                      <li><input #findmessage class="dropdown-item" (keypress)="searchMessage(findmessage.value)" (keyup.backspace)="searchMessage(findmessage.value)" type="text"></li>
+                    </ul>
+                  </div>
+
             </div>
         </div>
     </div>
-   
+
     <div class="container mb-5">
-  <div class="mb-1" *ngFor="let messag of messages"  [class.outc]="messag.type=='outcoming'">
-    <div  [class.incoming]="messag.type=='incoming'" [class.outcoming]="messag.type=='outcoming'" >
-        <p > {{messag.message}}  </p>
-    </div>  
-  </div>
- 
+        <div class="mb-1" *ngFor="let messag of messages" [class.outc]="messag.type=='outcoming'">
+
+            <div [class.incoming]="messag.type=='incoming'" [class.outcoming]="messag.type=='outcoming'">
+                <div *ngIf="messag.type=='incoming'">
+                    <p> {{messag.message}} </p>
+                </div>
+                <div *ngIf="!messag.deleted && messag.type=='outcoming'">
+                    <p> {{messag.message}} </p> <button type="button" id="trash" (click)="updateMessage(messag)"><i
+                            class="bi bi-trash3" style="font-size: 0.2 rem;"></i></button>
+                </div>
+                <div *ngIf="messag.deleted ">
+                    <p style="font-style: oblique;"> Hai eliminato questo messaggio </p>
+                </div>
+
+            </div>
+        </div>
     </div>
+
+
+    <footer class="row fixed-bottom my-2 d-flex justify-content-center">
         
+        <div class="col-10" *ngIf="scrivendo"><p class="scrivendo">{{contatto.firstname}} Sta scrivendo ...</p></div>
 
-<footer class="row fixed-bottom my-2 d-flex justify-content-center">
-   
-        <input type="text" #mess name="" class="col-8 " id="" (keydown.enter)="add(mess.value)" (keydown.enter)="randomAnswers()" (keyup.enter)="mess.value=''" >
-        <button (click)="add(mess.value)"  (click)="randomAnswers()" class="col-2 invia ms-1 " (click)='mess.value=""' > Invia </button>
+        <input type="text" #mess name="" class="col-8 " id="" (keydown.enter)="add(mess.value)"
+            (keydown.enter)="randomAnswers()" (keyup.enter)="mess.value=''">
+        <button (click)="add(mess.value)" (click)="randomAnswers()" class="col-2 invia ms-1 " (click)='mess.value=""'>
+            Invia </button>
 
-</footer> 
-  
-    
-    
+    </footer>

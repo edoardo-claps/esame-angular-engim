@@ -6,6 +6,10 @@
 
 }
 
+ul{
+  box-shadow: 0 4px 4px 0 gray;
+}
+
 button{
   display: inline-block;
   color: rgb(7, 15, 123);
@@ -28,4 +32,14 @@ button:hover{
       0 0 25px rgb(4, 15, 177),
       0 0 50px rgb(25, 41, 252);
   }
+}
+
+input{
+  color:rgb(4, 15, 177) ;
+  border:1px solid rgb(4, 15, 177) ;
+  border-radius: 3px;
+}
+label{
+  color:rgb(4, 15, 177) ;
+
 }

@@ -32,8 +32,23 @@ export class ContactService {
     return this.http.post("angular/contacts", contatto, this.httpOptions)
   }
 
-  deleteContact(id:number):Observable<any>{
+  deleteContact(id: number): Observable<any> {
     return this.http.delete(`angular/contacts/${id}`)
 
+  }
+
+  searchContactByFirstname(search: string): Observable<Contact[]> {
+    return this.http.get<Contact[]>('api/contacts/?firstname=' + search)
+  }
+
+  searchContactByLastname(search: string): Observable<Contact[]> {
+    return this.http.get<Contact[]>('api/contacts/?lastname=' + search)
+  }
+
+  getTeachers(): Observable<Contact[]> {
+    return this.http.get<Contact[]>('api/contacts/?type=teacher')
+  }
+  getStudents(): Observable<Contact[]> {
+    return this.http.get<Contact[]>('api/contacts/?type=student')
   }
 }

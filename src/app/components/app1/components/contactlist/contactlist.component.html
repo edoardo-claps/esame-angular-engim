@@ -1,16 +1,79 @@
-<div class="container">
-    <div class="row nav">
-        <div class="col-1 "><button type="button" (click)="goBack()"><i class="bi bi-arrow-left-short" style="font-size: 2rem;"></i></button></div>
-        <div class="col-10 my-auto  text-center"><h1>Rubrica</h1></div>
+<div class="container  sticky-top">
+    <div class="row nav mb-2">
+        <div class="col-2 "><button type="button" (click)="goBack()"><i class="bi bi-arrow-left-short"
+                    style="font-size: 2rem;"></i></button></div>
+        <div class="col-8 col-md-10 my-auto  text-center">
+            <h1>Rubrica</h1>
+        </div>
+        <div class="col-md col-1 p-0 d-flex justify-content-md-end">
+            <div class="dropend   ">
+                <button class="btn me-2" type="button" id="dropdownMenuButton2"
+                    data-bs-toggle="dropdown" aria-expanded="false"> <i class="bi bi-search " style="font-size: 1.5rem;"></i>
+                </button>
+                
+        <ul class="dropdown-menu dropdown-menu-end " aria-labelledby="dropdownMenuButton2">
+            <li>
+                <h3 class="ms-2">Cerca contatto</h3>
+            </li>
+
+            <li>
+                <div>
+                    <div class=" dropdown-item ">
+                        <label class="me-1" for="firstname">Nome: </label>
+                        <input #first id="firstname" placeholder="firstname"
+                            (keydown)="searchContactByFirstname(first.value)"
+                            (keydown.enter)="searchContactByFirstname(first.value)">
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <div class=" dropdown-item ">
+                        <label class="me-1" for="lastname">Cognome: </label>
+                        <input #last id="lastname" placeholder="lastname"
+                            (keydown)="searchContactByLastname(last.value)"
+                            (keydown.enter)="searchContactByLastname(last.value)">
+                    </div>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col d-flex justify-content-center mt-2">
+        <a routerLink="/contact/0" class="me-2"><button type="button"><i class="bi bi-person-plus"
+                    style="font-size: 2rem;"></i></button></a>
+        <button class="me-1" type="button" (click)=" searchContactByType('teacher')">
+            <h4>Professori</h4>
+        </button>
+        <button class="me-1" type="button" (click)=" searchContactByType('student')" >
+            <h4>Studenti</h4>
+        </button>
+    </div>
+    <div class="col  d-flex justify-content-center mt-2">
+        <input class="me-1" type="text" #typeSer (keydown.enter)=" searchContactByType(typeSer.value)"
+            placeholder="Raggruppa per categoria">
 
     </div>
-</div>
-<div class="col d-flex justify-content-center mt-2"><a routerLink="/contact/0" ><button type="button" ><i class="bi bi-person-plus" style="font-size: 2rem;"></i></button></a></div>
 
-<div class="container" *ngIf="contacts">
-    <div *ngFor="let contact of contacts">
-      
-       <app-contact-item [contatto]="contact"></app-contact-item>
+    <div class="container mb-2" *ngIf="contacts">
+
+        <div *ngIf="contacts.length!=0">
+            <div *ngFor="let contact of contacts">
+                <app-contact-item [contatto]="contact"></app-contact-item>
+            </div>
+        </div>
+
+        <div *ngIf="contacts.length==0">
+            <div class="col-12 text-center mt-4">
+                <h1>Nessun risultato</h1>
+            </div>
+        </div>
 
     </div>
-</div>
