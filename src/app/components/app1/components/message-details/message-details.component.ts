@@ -5,8 +5,7 @@ import { LocationStrategy } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from '../../service/message.service';
 import { Message } from '../../interface/messageInterface';
-import { Identifier } from 'estree';
-import { delay } from 'rxjs';
+
 
 
 @Component({
@@ -18,7 +17,7 @@ export class MessageDetailsComponent implements OnInit {
   contatto?: Contact;
   messages: Message[] = [];
   scrivendo?: boolean ;
-
+  modalMessage?:Message;
 
   constructor(private route: ActivatedRoute,
     private contactService: ContactService,
@@ -28,7 +27,7 @@ export class MessageDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.getContact()
     this.getMessages()
-
+    
   }
 
   getContact(): void {
@@ -55,9 +54,8 @@ export class MessageDetailsComponent implements OnInit {
     this.messageService.addMessage(messaggino)
       .subscribe((data: Message) => {
         this.messages.push(data)
-        
       });
-
+      
   }
   randomAnswers(): void {
     this.scrivendo=true
@@ -75,11 +73,10 @@ export class MessageDetailsComponent implements OnInit {
   }
 
   updateMessage(message: Message): void {
-    if(confirm("vuoi davvero cancellare il messaggio?"))
-    { 
+   
     message.deleted = true
     this.messageService.updateMessage(message).subscribe();
-    }
+    
   }
 
   searchMessage(search: string):void{
@@ -90,4 +87,17 @@ export class MessageDetailsComponent implements OnInit {
     const ida = Number(this.route.snapshot.paramMap.get('userId'));
     this.messageService.searchMessage(search).subscribe(data=>this.messages =data.filter(mess=>mess.userId==ida))
   }
+
+  delete(id :number):void{
+
+    this.messageService.delete(id).subscribe(data=>
+      this.getMessages()
+    )
+  }
+
+  forModalDeletion(message:Message):void{
+   this.modalMessage = message
+
+  }
+  
 }

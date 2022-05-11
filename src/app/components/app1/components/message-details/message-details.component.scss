@@ -38,16 +38,31 @@ button{
     &.invia{
         background-color: white;
     }
-    &#trash{
+    &.trash{
         border: none;
+    }
+    &.btn-danger{
+        color: black;
+        background-color: rgb(239, 54, 54);
+        border:rgb(187, 22, 22) ;
     }
   }
   
   button:hover{
-    animation: pulsate 1s 
-    ease-in-out; /*The pulsate animation is added on hover. You could also add this on .button:focus and it will add it when clicking the button as well.*/
+    animation: pulsate 1s ease-in-out;
+    &.btn-danger{
+        animation: pulsate2 1s ease-in-out;
+    }
   }
   
+  @keyframes pulsate2 {
+  
+    0%{
+        box-shadow: 
+        0 0 25px rgb(164, 3, 3),
+        0 0 50px rgb(237, 15, 15);
+    }
+  }
   @keyframes pulsate {
   
     0%{
@@ -63,6 +78,12 @@ p{
         font-style: oblique;
         color: gray;
     }
+    &#modal{
+        color: black;
+    }
+}
+h5{
+    color: black;
 }
 input{
     border-radius: 10px;

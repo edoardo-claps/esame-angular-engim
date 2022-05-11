@@ -36,4 +36,8 @@ export class MessageService {
   searchMessage(search: string):Observable<Message[]>{
     return this.http.get<Message[]>('api/messages/?message='+search)
   }
+
+  delete(id:number):Observable<any>{
+    return this.http.delete('api/messages/'+ id)
+  }
 }
